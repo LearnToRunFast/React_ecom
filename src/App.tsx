@@ -5,35 +5,12 @@ import {Route, Switch} from "react-router-dom";
 import ShopPage from "./Pages/Shop/Shop.component";
 import Header from "./Components/Header/Header.component";
 import SignPage from "./Pages/Sign/Sign.component";
-import {auth} from "./firebase/firebase.utils";
-interface State {
-    currentUser: any
-}
-class App extends React.Component<Record<string, never>,State>  {
-  constructor(props: Record<string, never>) {
-    super(props)
-    this.state = {
-      currentUser: null,
-    };
-  }
-  // really cant find the type of the firebase.Unsubscribe
-  unsubscribeFromAuth:any = null;
-  componentDidMount():void {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({currentUser: user});
-      console.log(user);
-    });
-  }
+class App extends React.Component<Record<string, never>>  {
 
-  componentWillUnmount(): void {
-    if (this && this.unsubscribeFromAuth) {
-      this.unsubscribeFromAuth();
-    }
-  }
   render(): React.ReactNode {
     return (
       <div>
-      <Header currUser={this.state.currentUser}/>
+      <Header/>
       <Switch>
         <Route exact path='/' component={HomePage}></Route>
         <Route path='/shop' component={ShopPage}></Route>

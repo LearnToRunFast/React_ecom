@@ -1,15 +1,16 @@
 import './Sign-in.styles.scss'
-import React from 'react'
+import React from "react";
 import FormInput from '../Form-input/Form-input.component'
 import CustomButton from '../Custom-button/Custom-button.component'
-import {signInWithGoogle} from '../../firebase/firebase.utils'
+import {signInWithGoogle, signInWithEmail} from '../../firebase/firebase.utils'
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface State {
 	[key: string]: string;
 } 
-    
-class SignIn extends React.Component<Record<string,never>, State> {
-	constructor(props:Record<string,never>) {
+
+class SignIn extends React.Component<RouteComponentProps, State> {
+	constructor(props:RouteComponentProps) {
 		super(props);
 		this.state = {
 			email: '',
@@ -21,9 +22,13 @@ class SignIn extends React.Component<Record<string,never>, State> {
 		const { name, value } = e.target
 		this.setState({[name]: value})
 	}
-	handleSubmit = (event: React.FormEvent<HTMLFormElement>):void => {
-		event.preventDefault();
-		this.setState({email: '', password: ''});
+	handleSubmit = async () => {
+		const ok = await signInWithEmail(this.state.email, this.state.password);
+		if (ok) {
+			this.setState({email: '', password: ''});
+			this.props.history.push('/');
+		}
+
 	}
 
 	render(): React.ReactElement {
@@ -31,7 +36,7 @@ class SignIn extends React.Component<Record<string,never>, State> {
 			<div className="sign-in">
 				<h2 className="title">I already have an account</h2>
 				<span>Sign in with your email and password</span>
-				<form onSubmit={this.handleSubmit}>
+				<form>
 					<FormInput 
 						type="email" 
 						name="email"
@@ -50,10 +55,11 @@ class SignIn extends React.Component<Record<string,never>, State> {
 					/>
 					<div className="buttons">
 						<CustomButton 
-							type='submit'>
+							type='button' 
+							onClick={this.handleSubmit} >
 								Sign In
 						</CustomButton>
-						<CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+						<CustomButton type='button' onClick={signInWithGoogle} isGoogleSignIn>
 							Sign In With Google
 						</CustomButton>
 					</div>
@@ -61,6 +67,5 @@ class SignIn extends React.Component<Record<string,never>, State> {
 			</div>
 		)
 	}
-
 }
-export default SignIn
+export default withRouter(SignIn)

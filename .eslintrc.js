@@ -3,6 +3,7 @@ module.exports = {
   extends: [
     "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin
+    "plugin:react-hooks/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
@@ -14,6 +15,8 @@ module.exports = {
   rules: {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
   },

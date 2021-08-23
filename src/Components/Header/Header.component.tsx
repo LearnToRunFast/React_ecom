@@ -1,15 +1,13 @@
 import './Header.styles.scss'
 
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from 'react-router-dom'
 import {ReactComponent as Logo} from '../../assets/crown.svg'
 import {signOut} from '../../firebase/firebase.utils'
-import { AuthContext } from '../../context/AuthContext'
-
+import {getUser} from '../../redux/reducer/user.reducer';
+import {useSelector} from 'react-redux';
 const Header:React.FC = () => {
-
-	const user = useContext(AuthContext)
-	
+	const user = useSelector(getUser);
 	return <div className="header">
 		<Link className="logo-container" to="/">
 			<Logo className="logo"/>

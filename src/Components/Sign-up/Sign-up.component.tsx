@@ -4,23 +4,14 @@ import FormInput from '../Form-input/Form-input.component';
 import CustomButton from '../Custom-button/Custom-button.component';
 
 import { createUserProfileDocument, createUserWithEmail } from '../../firebase/firebase.utils';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 
-const Signup: FC<RouteComponentProps> = (props: RouteComponentProps) => {
+const Signup: FC = () => {
 	const [displayName, setDisplayName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
-	const {history} = props;
-
-	const resetInputs = () => {
-		setEmail('');
-		setPassword('');
-		setConfirmPassword('');
-		setDisplayName('');
-	}
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (password !== confirmPassword) {
@@ -31,10 +22,6 @@ const Signup: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 		if (!createdUser) return
 		const userObj =  await createUserProfileDocument(createdUser.user, { displayName });
 		if (!userObj) return
-
-		resetInputs();
-		history.push('/');
-			
 	}
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>):void => {
 		const { name, value } = event.target;
@@ -94,7 +81,6 @@ const Signup: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 			<CustomButton type='submit'>SIGN UP</CustomButton>
 		  </form>
 		</div>
-	  );
-
+	);
 }
-export default withRouter(Signup);
+export default Signup;

@@ -3,7 +3,7 @@ interface Date {
 	nanoseconds: number
 	seconds: number
 }
-export interface User {
+export interface UserModel {
 	displayName?: string;
 	email?: string;
 	id?: string;

@@ -10,10 +10,26 @@ interface Props {
 	onClick?: () => void;
 	radius?: string;
 	width?: string;
+	inverted?: boolean;
 	isGoogleSignIn?: boolean;
 }
-const CustomButton:React.FC<Props> = ({children,isGoogleSignIn, ...otherProps}: Props) => (
-	<button className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`} {...otherProps}>
+
+const googleSignInClassName: (a:boolean| undefined)=>string = (isGoogleSignIn) => {
+	return isGoogleSignIn ? 'google-sign-in' : ''
+}
+
+const invertedClassName: (a:boolean| undefined)=>string = (inverted) => {
+	return inverted ? 'inverted' : ''
+}
+const CustomButton:React.FC<Props> = ({
+	children,
+	isGoogleSignIn,
+	inverted,
+	 ...otherProps}: Props) => (
+
+	<button className={`${googleSignInClassName(isGoogleSignIn)} 
+						${invertedClassName(inverted)}
+						custom-button`} {...otherProps}>
 		{children}
 	</button>
 )

@@ -9,7 +9,7 @@ import SignPage from "./Pages/Sign/Sign.component";
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import { useDispatch, useSelector} from 'react-redux';
 import {setUser} from './redux/action/user.action';
-import {getUser} from './redux/reducer/user.reducer';
+import {getUser} from './redux/selector/user.selector';
 
 
 const App:React.FC = () => {

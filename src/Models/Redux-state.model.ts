@@ -1,12 +1,7 @@
-import {CartItemModel} from './CartItem.model';
-import {UserModel} from './User.model';
-
+import {UserModel, CartModel, ShopCategoryModel, DirecotryModel} from './model';
 export interface ReduxStateModel {
-	cart: {
-		hidden: boolean,
-		cartItems: CartItemModel[]
-	},
-	user: {
-		user: UserModel
-	} | null
+	cart: CartModel,
+	user: UserModel,
+	directory:DirecotryModel,
+	shop: ShopCategoryModel
 }

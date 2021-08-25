@@ -1,33 +1,21 @@
 
-import SHOP_DATA from './shop.data.js';
 import React from 'react';
 import CollectionPreview from '../../Components/Collection-preview/Collection-preview.component';
+import { getCategories } from '../../redux/selector';
+import {useSelector} from 'react-redux';
 
-// interface Item {
-// 	id: number;
-// 	name: string;
-// 	price: number;
-// 	imageUrl: string;
-// }
-
-// interface Collection {
-// 	id: number,
-// 	title: string,
-// 	routeName: string,
-// 	items: Item[]
-// }
-
-// interface Props {
-// 	collections: Collection[]
-// }
-const ShopPage:React.FC = () => (
+const ShopPage:React.FC = () => {
+	const categories = useSelector(getCategories)
+	return (	
 		<div className="shop-page">
-		{
-			SHOP_DATA.map(({id, ...others}) => (
-				<CollectionPreview key={id} {...others}/>
-			))
-		}
-	</div>
-)
+			{
+				categories.map(({id, ...others}) => (
+					<CollectionPreview key={id} {...others}/>
+				))
+			}
+		</div>
+	)
+}
+
 
 export default ShopPage;

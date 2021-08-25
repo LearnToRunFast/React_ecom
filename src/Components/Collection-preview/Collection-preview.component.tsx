@@ -1,6 +1,6 @@
 import './Collection-preview.styles.scss';
 import Collection from '../Collection/Collection.component';
-import {CollectionItemModel} from '../../Models/CollectionItem.model'; 
+import {CollectionItemModel} from '../../Models/model'; 
 interface Prop {
 	title: string;
 	routeName: string;

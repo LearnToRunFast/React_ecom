@@ -1,5 +1,5 @@
 import './Cart-item.styles.scss';
-import {CartItemModel} from '../../Models/CartItem.model'
+import {CartItemModel} from '../../Models/model'
 
 interface Prop {
 	item: CartItemModel

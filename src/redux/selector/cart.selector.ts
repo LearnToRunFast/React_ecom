@@ -1,4 +1,4 @@
-import {ReduxStateModel} from '../../Models/Redux-state.model';
+import {ReduxStateModel} from '../../Models/model';
 import {createSelector} from 'reselect';
 
 const selector = (state: ReduxStateModel) => state.cart;
@@ -14,4 +14,8 @@ export const getCartItemCount = createSelector(getCartItems, (cartItems) => {
 
 export const isCartHidden = createSelector(getCartDropdownState, (hidden) => {
 	return hidden;
+});
+
+export const getCartTotal = createSelector(getCartItems, (cartItems) => {
+	return cartItems.reduce((total, item) => total + (item.quantity * item.price), 0);
 });

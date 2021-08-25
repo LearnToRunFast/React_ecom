@@ -1,6 +1,6 @@
 
-import {ACTION_TYPE} from "../action/actionTypes";
-import {UserModel} from "../../Models/User.model"
+import {ACTION_TYPE} from "../action";
+import {UserModel} from "../../Models/model"
 import { AnyAction } from 'redux'
 const INIT_STATE = {
 	user: null

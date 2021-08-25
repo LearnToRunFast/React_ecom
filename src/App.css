@@ -9,3 +9,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/*
+ turn off input number spinner
+*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -8,7 +8,7 @@ import {getUser} from '../../redux/selector/user.selector';
 import {useSelector} from 'react-redux';
 import CartIcon from '../Cart-icon/Cart-icon.component';
 import CartDropdown from '../Cart-dropdown/Cart-dropdown.component';
-import {getCartDropdownState} from '../../redux/selector/cart.selector';
+import {getCartDropdownState} from '../../redux/selector';
 
 const Header:React.FC = () => {
 	const user = useSelector(getUser);

@@ -1,10 +1,8 @@
 import { ACTION_TYPE } from "./actionTypes";
-import { UserModel } from "../../Models/User.model";
-interface UserAction {
-	type: ACTION_TYPE;
-	payload: UserModel | null;
-}
-export const setUser:(user:UserModel|null) => UserAction = (user) => ({
+import { User } from "../../Models/model";
+import {AnyAction} from "redux";
+
+export const setUser:(user:User | null) => AnyAction = (user) => ({
 		type: ACTION_TYPE.SET_USER,
 		payload: user
 });

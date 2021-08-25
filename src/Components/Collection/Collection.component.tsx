@@ -1,9 +1,9 @@
 import './Collection.styles.scss';
 import CustomButton from '../Custom-button/Custom-button.component';
 import {useDispatch, useSelector} from 'react-redux';
-import {addItem, showCartDropdown} from '../../redux/action/cart.action';
-import { isCartHidden} from '../../redux/selector/cart.selector';
-import {CollectionItemModel} from '../../Models/CollectionItem.model';
+import {addItem, showCartDropdown} from '../../redux/action';
+import { isCartHidden} from '../../redux/selector';
+import {CollectionItemModel} from '../../Models/model';
 interface Prop {
 	item : CollectionItemModel;
 }

@@ -8,8 +8,9 @@ import SignPage from "./Pages/Sign/Sign.component";
 
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import { useDispatch, useSelector} from 'react-redux';
-import {setUser} from './redux/action/user.action';
-import {getUser} from './redux/selector/user.selector';
+import {getUser} from './redux/selector';
+import {setUser} from './redux/action';
+import CheckoutPage from "./Pages/Checkout/Checkout.component";
 
 
 const App:React.FC = () => {
@@ -51,6 +52,7 @@ const App:React.FC = () => {
   <Switch>
     <Route exact path='/' component={HomePage}></Route>
     <Route path='/shop' component={ShopPage}></Route>
+    <Route exact path='/checkout' component={CheckoutPage}></Route>
     <Route exact path='/sign' 
           render={()=> ( 
             user? (<Redirect to='/'/>)

@@ -3,14 +3,19 @@ import './Cart-dropdown.styles.scss';
 import CustomButton from '../Custom-button/Custom-button.component';
 import CartItem from '../Cart-item/Cart-item.component';
 import {useSelector} from 'react-redux';
-import {getCartItems} from '../../redux/selector/cart.selector';
+import {getCartItems} from '../../redux/selector';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {toggleCartDropdown} from '../../redux/action';
+import React from 'react';
 
-const handleOnClick = () => {
-	alert('You clicked the cart dropdown button!');
-}
-const CartDropdown:React.FC = () => {
+const CartDropdown:React.FC<RouteComponentProps> = ({history}: RouteComponentProps) => {
 	const cartItems = useSelector(getCartItems);
-
+	const dispatch = useDispatch();
+	const handleOnClick = () => {
+		history.push('/checkout');
+		dispatch(toggleCartDropdown());
+	}
 	return (
 		<div className="cart-dropdown">
 			<div className="cart-items">
@@ -26,4 +31,4 @@ const CartDropdown:React.FC = () => {
 		</div>	
 )}
 
-export default CartDropdown;
+export default withRouter(CartDropdown);

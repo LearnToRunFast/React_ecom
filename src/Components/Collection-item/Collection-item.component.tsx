@@ -1,4 +1,4 @@
-import './Collection.styles.scss';
+import './Collection-item.styles.scss';
 import CustomButton from '../Custom-button/Custom-button.component';
 import {useDispatch, useSelector} from 'react-redux';
 import {addItem, showCartDropdown} from '../../redux/action';
@@ -7,8 +7,6 @@ import {CollectionItemModel} from '../../Models/model';
 interface Prop {
 	item : CollectionItemModel;
 }
-
-
 		
 const Collection:React.FC<Prop> = ({item}:Prop) => {
 	const {name, price, imageUrl} = item;

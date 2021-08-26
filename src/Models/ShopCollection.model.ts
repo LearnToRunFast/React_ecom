@@ -6,12 +6,12 @@ interface ShopItem {
 	imageUrl: string;
 }
 
-export interface ShopCategory {
-	id: number;
+export interface ShopCollection {
+	id?: number;
 	title: string;
 	routeName: string;
 	items: ShopItem[];
 }
-export interface ShopCategoryModel {
-	categories: ShopCategory[];
+export interface ShopCollectionModel {
+	collections: ShopCollection[];
 }

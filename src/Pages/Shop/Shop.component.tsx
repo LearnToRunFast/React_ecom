@@ -1,18 +1,13 @@
 
 import React from 'react';
-import CollectionPreview from '../../Components/Collection-preview/Collection-preview.component';
-import { getCategories } from '../../redux/selector';
-import {useSelector} from 'react-redux';
-
-const ShopPage:React.FC = () => {
-	const categories = useSelector(getCategories)
+import { Route, RouteComponentProps } from 'react-router-dom';
+import CollectionPage from '../Collection/Collection.component';
+import CollectionOverview from '../../Components/Collection-overview/Collection-overview.component';
+const ShopPage:React.FC<RouteComponentProps> = ({match}: RouteComponentProps) => {
 	return (	
 		<div className="shop-page">
-			{
-				categories.map(({id, ...others}) => (
-					<CollectionPreview key={id} {...others}/>
-				))
-			}
+			<Route exact path={`${match.path}`}  component={CollectionOverview} />
+			<Route path={`${match.path}/:collectionId`} component={CollectionPage} />
 		</div>
 	)
 }

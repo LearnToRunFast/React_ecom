@@ -1,8 +1,8 @@
 import { ACTION_TYPE } from "./actionTypes";
-import { ShopCategory } from "../../Models/model";
+import { ShopCollection } from "../../Models/model";
 import {AnyAction} from "redux";
 
-export const addShopCategory:(shopCategory: ShopCategory) => AnyAction = (shopCategory) => ({
-		type: ACTION_TYPE.ADD_SHOP_CATEGORY,
-		payload: shopCategory
+export const addShopCategory:(shopCategory: ShopCollection) => AnyAction = (data) => ({
+		type: ACTION_TYPE.ADD_SHOP_COLLECTION,
+		payload: data
 });

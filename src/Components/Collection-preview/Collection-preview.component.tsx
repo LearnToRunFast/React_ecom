@@ -1,13 +1,9 @@
 import './Collection-preview.styles.scss';
-import Collection from '../Collection/Collection.component';
-import {CollectionItemModel} from '../../Models/model'; 
-interface Prop {
-	title: string;
-	routeName: string;
-	items: CollectionItemModel[];
-}
+import Collection from '../Collection-item/Collection-item.component';
+import {ShopCollection} from '../../Models/model';
 
-const CollectionPreview:React.FC<Prop> = ({title, items }: Prop) => {
+
+const CollectionPreview:React.FC<ShopCollection> = ({title, items }: ShopCollection) => {
 	return (
 
 		<div className="collection-preview">

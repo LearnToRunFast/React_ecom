@@ -9,21 +9,20 @@ const INIT_STATE:DirecotryModel = {
 			imageUrl: 'images/hats.png', // local file in public/images/
 			id: 1,
 			linkUrl: 'shop/hats'
-	
-		},
-		{
-			title: 'jackets',
-			// imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-			imageUrl: 'images/jackets.png', // local file in public/images/
-			id: 2,
-			linkUrl: 'shop/jackets'
 		},
 		{
 			title: 'sneakers',
 			// imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
 			imageUrl: 'images/sneakers.png', // local file in public/images/
-			id: 3,
+			id: 2,
 			linkUrl: 'shop/sneakers'
+		},
+		{
+			title: 'jackets',
+			// imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+			imageUrl: 'images/jackets.png', // local file in public/images/
+			id: 3,
+			linkUrl: 'shop/jackets'
 		},
 		{
 			title: 'womens',
@@ -43,7 +42,11 @@ const INIT_STATE:DirecotryModel = {
 		}
 	]
 }
-
+export const CollectionIdMap = Object.assign({},
+	...INIT_STATE.sections.map(collection => {
+		return {[collection.title.toLowerCase()]:collection.id};
+	})
+)
 export const directoryReducer:(state: DirecotryModel,action: AnyAction) => DirecotryModel = (state= INIT_STATE, action:AnyAction) => {
 	switch(action.type) {
 		case ACTION_TYPE.ADD_DIRECTORY:

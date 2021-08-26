@@ -1,10 +1,10 @@
 
 import {ACTION_TYPE} from "../action";
 import { AnyAction } from 'redux'
-import { ShopCategoryModel } from "../../Models/model";
+import { ShopCollectionModel } from "../../Models/model";
 
-const INIT_STATE:ShopCategoryModel = {
-	categories: [
+const INIT_STATE:ShopCollectionModel = {
+	collections: [
 		{
 		  id: 1,
 		  title: "Hats",
@@ -289,12 +289,12 @@ const INIT_STATE:ShopCategoryModel = {
 }
 
 
-export const shopReducer:(state:ShopCategoryModel,action: AnyAction) => ShopCategoryModel = (state = INIT_STATE, action:AnyAction) => {
+export const shopReducer:(state:ShopCollectionModel,action: AnyAction) => ShopCollectionModel = (state = INIT_STATE, action:AnyAction) => {
 	switch(action.type) {
-		case ACTION_TYPE.ADD_SHOP_CATEGORY:
+		case ACTION_TYPE.ADD_SHOP_COLLECTION:
 			return {
 				...state,
-				categories: [...state.categories, action.payload]
+				collections: [...state.collections, action.payload]
 			}
 		default:
 			return state

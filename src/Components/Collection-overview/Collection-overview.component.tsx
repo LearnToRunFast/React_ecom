@@ -9,8 +9,8 @@ const CollectionOverview:React.FC = () => {
 		<div className="collection-overview">
 			{
 				collections 
-				? collections.map(({id, ...otherCollectionProps}) => (
-					<CollectionPreview key={id} {...otherCollectionProps} />
+				? Object.entries(collections).map(([_, collection]) => (
+					<CollectionPreview key={collection.id} {...collection} />
 				))
 				: null
 			}

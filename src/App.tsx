@@ -47,19 +47,22 @@ const App:React.FC = () => {
     return unsubscribe;
   }, [dispatch]);
 
-  return <div>
-  <Header/>
-  <Switch>
-    <Route exact path='/' component={HomePage}></Route>
-    <Route path='/shop' component={ShopPage}></Route>
-    <Route exact path='/checkout' component={CheckoutPage}></Route>
-    <Route exact path='/sign' 
-          render={()=> ( 
-            user? (<Redirect to='/'/>)
-                : (<SignPage/>)
-          )} >
-    </Route>
-  </Switch>
-</div>
+  return (
+    <div>
+      <Header/>
+      <Switch>
+        <Route exact path='/' component={HomePage}></Route>
+        <Route path='/shop' component={ShopPage}></Route>
+        <Route exact path='/checkout' component={CheckoutPage}></Route>
+        <Route exact path='/sign' 
+              render={()=> ( 
+                user? (<Redirect to='/'/>)
+                    : (<SignPage/>)
+              )} >
+        </Route>
+      </Switch>
+    </div>
+  )
+
 }
 export default App;

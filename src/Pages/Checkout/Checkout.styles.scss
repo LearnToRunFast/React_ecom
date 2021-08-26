@@ -26,9 +26,24 @@
     width: 100%;
   }
   .checkout-footer {
-    min-width: 30%;
-    text-transform: uppercase;
-    margin: 1.6rem 2rem 0 auto;
-    font-size: 2rem;
+    display: grid;
+    margin-top: 3rem;
+    width: 100%;
+    .total {
+      display: grid;
+      text-transform: uppercase;
+      margin: 1.6rem 2rem 0 auto;
+      font-size: 2rem;
+    }
+    button {
+      display: grid;
+      margin: 1.6rem 2rem 0 auto;
+    }
+    .test-warning {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 1.4rem;
+    }
   }
 }

@@ -4,8 +4,8 @@ import { AnyAction } from 'redux'
 import { ShopCollectionModel } from "../../Models/model";
 
 const INIT_STATE:ShopCollectionModel = {
-	collections: [
-		{
+	collections: {
+		hats: {
 		  id: 1,
 		  title: "Hats",
 		  routeName: "hats",
@@ -75,7 +75,7 @@ const INIT_STATE:ShopCollectionModel = {
 			},
 		  ],
 		},
-		{
+		sneakers: {
 		  id: 2,
 		  title: "Sneakers",
 		  routeName: "sneakers",
@@ -138,7 +138,7 @@ const INIT_STATE:ShopCollectionModel = {
 			},
 		  ],
 		},
-		{
+		jackets: {
 		  id: 3,
 		  title: "Jackets",
 		  routeName: "jackets",
@@ -180,7 +180,7 @@ const INIT_STATE:ShopCollectionModel = {
 			},
 		  ],
 		},
-		{
+		womens: {
 		  id: 4,
 		  title: "Womens",
 		  routeName: "womens",
@@ -236,7 +236,7 @@ const INIT_STATE:ShopCollectionModel = {
 			},
 		  ],
 		},
-		{
+		mens: {
 		  id: 5,
 		  title: "Mens",
 		  routeName: "mens",
@@ -284,8 +284,8 @@ const INIT_STATE:ShopCollectionModel = {
 			  price: 25,
 			},
 		  ],
-		},
-	  ]
+		}
+	}
 }
 
 
@@ -294,7 +294,7 @@ export const shopReducer:(state:ShopCollectionModel,action: AnyAction) => ShopCo
 		case ACTION_TYPE.ADD_SHOP_COLLECTION:
 			return {
 				...state,
-				collections: [...state.collections, action.payload]
+				collections: {...state.collections, ...action.payload}
 			}
 		default:
 			return state

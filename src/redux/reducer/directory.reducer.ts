@@ -42,11 +42,8 @@ const INIT_STATE:DirecotryModel = {
 		}
 	]
 }
-export const CollectionIdMap = Object.assign({},
-	...INIT_STATE.sections.map(collection => {
-		return {[collection.title.toLowerCase()]:collection.id};
-	})
-)
+
+
 export const directoryReducer:(state: DirecotryModel,action: AnyAction) => DirecotryModel = (state= INIT_STATE, action:AnyAction) => {
 	switch(action.type) {
 		case ACTION_TYPE.ADD_DIRECTORY:

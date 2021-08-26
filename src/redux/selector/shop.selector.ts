@@ -1,6 +1,5 @@
 import {ReduxStateModel, ShopCollectionModel } from '../../Models/model';
 import {createSelector} from 'reselect';
-import {CollectionIdMap} from '../reducer';
 import {memoize} from 'lodash';
 
   
@@ -10,6 +9,6 @@ export const getCollections = createSelector(selector, (shop) => shop.collection
 
 export const getCollection = memoize((name:string) => {
 	return createSelector(getCollections, (collections) => {
-		return collections[CollectionIdMap[name] - 1]
+		return collections[name];
 	});
 });

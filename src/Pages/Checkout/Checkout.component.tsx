@@ -34,6 +34,7 @@ const CheckoutPage:FC = () => {
 					))
 				}
 			</div>
+			
 			<div className='checkout-footer'>
 				<div className='test-warning'>
 					*Please use the following test credit card for payments*

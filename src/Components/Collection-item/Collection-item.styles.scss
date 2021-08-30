@@ -1,17 +1,18 @@
 .collection {
-  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 40rem;
+  width: 23%;
+  padding-bottom: 2rem;
   align-items: center;
   position: relative;
-
   .image {
     width: 100%;
     height: 95%;
     background-size: cover;
     background-position: center;
     margin-bottom: 0.25rem;
+    padding: 0 1rem;
   }
   .custom-button {
     width: 80%;
@@ -40,5 +41,21 @@
       width: 90%;
       margin-bottom: 1rem;
     }
+  }
+}
+@media (max-width: 1200px) {
+  .collection {
+    width: 30%;
+  }
+}
+@media (max-width: 1024px) {
+  .collection {
+    width: 46%;
+  }
+}
+
+@media (max-width: 768px) {
+  .collection {
+    width: 100%;
   }
 }

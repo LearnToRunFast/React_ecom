@@ -1,15 +1,15 @@
 .collection-page {
   display: flex;
   flex-direction: column;
+  min-width: 20rem;
   .title {
     font-size: 3rem;
     margin: 0 auto 1.9rem;
   }
   .items {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 1rem;
-
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     & .collection-item {
       margin-bottom: 1.75rem;
     }

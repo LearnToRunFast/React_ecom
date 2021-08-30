@@ -3,4 +3,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  flex-basis: 100%;
+  flex: 1;
+  min-width: 15rem;
+  min-height: 16.125rem;
+}
+@media (max-width: 800px) {
+  .directory-menu {
+    flex-direction: column;
+    width: 100%;
+  }
 }

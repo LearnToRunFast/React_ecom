@@ -1,19 +1,41 @@
 .collection-preview {
   display: flex;
+  width: 100%;
   flex-direction: column;
+  flex-wrap: wrap;
+  min-width: 20rem;
   margin-bottom: 2rem;
+  flex-basis: 100%;
+  flex: 1;
   .title {
+    width: 100%;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
 
   .preview {
+    width: 100%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
   .title {
+    text-align: center;
     &:hover {
       cursor: pointer;
     }
   }
+}
+@media (max-width: 480px) {
+  .collection-preview {
+    .preview {
+      flex-direction: column;
+      padding-bottom: 1rem;
+    }
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 1024px) {
 }

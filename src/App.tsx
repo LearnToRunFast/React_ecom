@@ -14,6 +14,8 @@ import CheckoutPage from "./Pages/Checkout/Checkout.component";
 
 import {getCollectionsFromFirestore } from './firebase/firebase.utils';
 import { updateCollections } from './redux/action';
+import { COLLECTION_DATA } from "./firebase/collections";
+import Contact from "./Pages/Contact/Contact.component";
 
 const App:React.FC = () => {
   const user = useSelector(getUser);
@@ -54,7 +56,13 @@ const App:React.FC = () => {
     addCollectionsToFirestoreIfNotExists();
 		async function fetchData() {
 			try {
-				const data = await getCollectionsFromFirestore();
+        let data;
+        if (process.env.NODE_ENV === 'development') {
+           data = COLLECTION_DATA;
+        } else {
+           data = await getCollectionsFromFirestore();
+        }
+
 				dispatch(updateCollections(data));
 			} catch (error) {
 				console.error(`error: get collections from firestore, ${error}`)
@@ -69,6 +77,7 @@ const App:React.FC = () => {
       <Header/>
       <Switch>
         <Route exact path='/' component={HomePage}></Route>
+        <Route exact path='/contact' component={Contact}></Route>
         <Route path='/shop' component={ShopPage}></Route>
         <Route exact path='/checkout' component={CheckoutPage}></Route>
         <Route exact path='/sign' 

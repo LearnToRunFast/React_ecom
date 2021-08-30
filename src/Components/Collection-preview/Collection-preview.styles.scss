@@ -11,4 +11,9 @@
     display: flex;
     justify-content: space-between;
   }
+  .title {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

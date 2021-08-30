@@ -2,6 +2,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import { COLLECTION_DATA } from "./collections";
 
 const config = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -62,5 +63,64 @@ export const signInWithEmail = (email, password) => {
 };
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const signOut = () => auth.signOut();
+
+export const collectionKey = "collections";
+
+const addCollectionsToFirestore = () => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+  Object.values(COLLECTION_DATA).forEach((collection) => {
+    const { title, items } = collection;
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, { title, items });
+  });
+  return batch.commit();
+};
+
+const convertCollectionsSnapshotToMap = (snapshot) => {
+  const transformedCollection = snapshot.docs.map((doc) => {
+    const { title, items } = doc.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+  const collections = transformedCollection.reduce(
+    (accumulator, collection) => {
+      accumulator[collection.title.toLowerCase()] = collection;
+      return accumulator;
+    },
+    {}
+  );
+  return collections;
+};
+export const addCollectionsToFirestoreIfNotExists = () => {
+  firestore
+    .collection(collectionKey)
+    .limit(1)
+    .get()
+    .then(async (snapshot) => {
+      if (snapshot.empty) {
+        await addCollectionsToFirestore();
+      }
+    })
+    .catch((err) =>
+      console.error(`error: trying to insert collections into db, ${err}`)
+    );
+};
+export const getCollectionsFromFirestore = () => {
+  return firestore
+    .collection(collectionKey)
+    .get()
+    .then((snapshot) => {
+      const collections = convertCollectionsSnapshotToMap(snapshot);
+      return collections;
+    })
+    .catch((err) =>
+      console.error(`error: fetching collections from firestore, ${err}`)
+    );
+};
 
 export default firebase;

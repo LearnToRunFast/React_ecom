@@ -13,7 +13,8 @@ export interface ShopCollection {
 	items: ShopItem[];
 }
 export interface ShopCollectionModel {
-	collections: {
-		[key: string]: ShopCollection
-	}
+	collections?: ShopCollections
+}
+export interface ShopCollections {
+	[key: string]: ShopCollection
 }

@@ -6,12 +6,14 @@ import ShopPage from "./Pages/Shop/Shop.component";
 import Header from "./Components/Header/Header.component";
 import SignPage from "./Pages/Sign/Sign.component";
 
-import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
+import {addCollectionsToFirestoreIfNotExists, auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import { useDispatch, useSelector} from 'react-redux';
 import {getUser} from './redux/selector';
 import {setUser} from './redux/action';
 import CheckoutPage from "./Pages/Checkout/Checkout.component";
 
+import {getCollectionsFromFirestore } from './firebase/firebase.utils';
+import { updateCollections } from './redux/action';
 
 const App:React.FC = () => {
   const user = useSelector(getUser);
@@ -47,6 +49,21 @@ const App:React.FC = () => {
     return unsubscribe;
   }, [dispatch]);
 
+  useEffect(() => {
+    const abortController = new AbortController();
+    addCollectionsToFirestoreIfNotExists();
+		async function fetchData() {
+			try {
+				const data = await getCollectionsFromFirestore();
+				dispatch(updateCollections(data));
+			} catch (error) {
+				console.error(`error: get collections from firestore, ${error}`)
+			}
+		}
+		fetchData();
+    return () => abortController.abort();
+  }, [dispatch]);
+
   return (
     <div>
       <Header/>
@@ -63,6 +80,5 @@ const App:React.FC = () => {
       </Switch>
     </div>
   )
-
 }
 export default App;

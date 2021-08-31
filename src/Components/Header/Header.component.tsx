@@ -14,17 +14,19 @@ const Header:React.FC = () => {
 	const user = useSelector(getUser);
 	const hidden = useSelector(getCartDropdownState);
 	const [isOpen, setIsOpen] = React.useState(false);
-
+	const closeMenu = () => {
+		setIsOpen(false);
+	}
 	return <div className="header">
 		<Link className="logo-container" to="/">
 			<Logo className="logo"/>
 		</Link>
 
 		<div className={`${isOpen ? "active": ""} options`}>
-			<Link className="option" to="/shop">
+			<Link className="option" onClick={closeMenu} to="/shop">
 				SHOP
 			</Link>
-			<Link className="option" to="/contact">
+			<Link className="option"onClick={closeMenu} to="/contact">
 				CONTACT
 			</Link>
 

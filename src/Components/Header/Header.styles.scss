@@ -6,6 +6,7 @@
   padding: 1rem 1.5rem;
 
   .side-menu {
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,7 +61,7 @@
 @media only screen and (max-width: 768px) {
   .header {
     .side-menu {
-      width: 35%;
+      width: 50%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -102,6 +103,18 @@
     }
     .active {
       left: 8.1%;
+    }
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .header {
+    .side-menu {
+      .auth {
+        .username,
+        .option {
+          font-size: 1rem;
+        }
+      }
     }
   }
 }

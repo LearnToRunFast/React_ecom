@@ -4,4 +4,9 @@
   align-items: center;
   padding: 5rem 5rem;
 }
+@media screen and (max-width: 768px) {
+  .homepage {
+    padding: 2rem;
+  }
+}
 // class name red button

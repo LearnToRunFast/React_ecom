@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { userReducer, cartReducer, directoryReducer } from "./reducer";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 
 // for persistent state
 import { persistStore, persistReducer } from "redux-persist";
@@ -12,6 +13,7 @@ const middlewares = [];
 if (process.env.NODE_ENV === "development") {
   middlewares.push(logger);
 }
+middlewares.push(thunk);
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -22,6 +24,7 @@ const rootReducer = combineReducers({
 
 //export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 // for persistent state
 const persistConfig = {
   key: "root",

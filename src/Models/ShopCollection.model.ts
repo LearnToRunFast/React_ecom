@@ -13,7 +13,9 @@ export interface ShopCollection {
 	items: ShopItem[];
 }
 export interface ShopCollectionModel {
-	collections?: ShopCollections
+	collections?: ShopCollections,
+	isFetchingCollections: boolean,
+	errorMessage: string
 }
 export interface ShopCollections {
 	[key: string]: ShopCollection

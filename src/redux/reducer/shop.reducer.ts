@@ -4,7 +4,9 @@ import { AnyAction } from 'redux'
 import { ShopCollectionModel } from "../../Models/model";
 
 const INIT_STATE: ShopCollectionModel = {
-	collections: undefined
+	collections: undefined,
+	isFetchingCollections: false,
+	errorMessage: "",
 };
 
 export const shopReducer:(state:ShopCollectionModel,action: AnyAction) => ShopCollectionModel = (state = INIT_STATE, action:AnyAction) => {
@@ -13,6 +15,23 @@ export const shopReducer:(state:ShopCollectionModel,action: AnyAction) => ShopCo
 			return {
 				...state,
 				collections: action.payload
+			}
+		case ACTION_TYPE.FETCH_SHOP_COLLECTION_START:
+			return {
+				...state,
+				isFetchingCollections: true
+			}
+		case ACTION_TYPE.FETCH_SHOP_COLLECTION_SUCCESS:
+			return {
+				...state,
+				isFetchingCollections: false,
+				collections: action.payload
+			}
+		case ACTION_TYPE.FETCH_SHOP_COLLECTION_FAILURE:
+			return {
+				...state,
+				isFetchingCollections: false,
+				errorMessage: action.payload
 			}
 		default:
 			return state

@@ -32,7 +32,7 @@ const Header:React.FC = () => {
 
 		</div>
 		<div className="side-menu">
-			<CartIcon/>
+			
 			<div className={`${isOpen ? "active": ""} hamburger-menu`} onClick={() => setIsOpen(!isOpen)}>
 				<span className="bar"></span>
 				<span className="bar"></span>
@@ -47,6 +47,7 @@ const Header:React.FC = () => {
 						)
 					: <Link className="option" to="/sign">SIGN IN</Link>
 			}
+			<CartIcon/>
 		</div>
 
 

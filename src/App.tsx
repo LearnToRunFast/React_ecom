@@ -6,15 +6,11 @@ import ShopPage from "./Pages/Shop/Shop.component";
 import Header from "./Components/Header/Header.component";
 import SignPage from "./Pages/Sign/Sign.component";
 
-import {addCollectionsToFirestoreIfNotExists, auth, createUserProfileDocument} from "./firebase/firebase.utils";
+import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import { useDispatch, useSelector} from 'react-redux';
 import {getUser} from './redux/selector';
-import {setUser} from './redux/action';
+import {fetchCollectionsStartAsync, setUser} from './redux/action';
 import CheckoutPage from "./Pages/Checkout/Checkout.component";
-
-import {getCollectionsFromFirestore } from './firebase/firebase.utils';
-import { updateCollections } from './redux/action';
-import { COLLECTION_DATA } from "./firebase/collections";
 import Contact from "./Pages/Contact/Contact.component";
 
 const App:React.FC = () => {
@@ -52,24 +48,7 @@ const App:React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const abortController = new AbortController();
-    addCollectionsToFirestoreIfNotExists();
-		async function fetchData() {
-			try {
-        let data;
-        if (process.env.NODE_ENV === 'development') {
-           data = COLLECTION_DATA;
-        } else {
-           data = await getCollectionsFromFirestore();
-        }
-
-				dispatch(updateCollections(data));
-			} catch (error) {
-				console.error(`error: get collections from firestore, ${error}`)
-			}
-		}
-		fetchData();
-    return () => abortController.abort();
+    dispatch(fetchCollectionsStartAsync());
   }, [dispatch]);
 
   return (

@@ -1,8 +1,6 @@
-import { ShopCollection } from "../Models/model";
-interface Collections {
-  [key: string]: ShopCollection;
-}
-export const COLLECTION_DATA: Collections = {
+import { ShopCollections } from "../Models/model";
+
+export const COLLECTION_DATA: ShopCollections = {
   hats: {
     id: 1,
     title: "Hats",

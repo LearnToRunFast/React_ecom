@@ -1,10 +1,11 @@
 import './Collection-preview.styles.scss';
 import Collection from '../Collection-item/Collection-item.component';
 import {ShopCollection} from '../../Models/model';
-import { RouteComponentProps,withRouter } from 'react-router-dom';
+import {useHistory,useRouteMatch } from 'react-router-dom';
 
-const CollectionPreview:React.FC<ShopCollection & RouteComponentProps> = ({title, items, match, history }: ShopCollection & RouteComponentProps) => {
-
+const CollectionPreview:React.FC<ShopCollection> = ({title, items }: ShopCollection) => {
+	const history = useHistory();
+	const match = useRouteMatch();
 	const handleClick = () => {
 		history.push(`${match.path}/${title.toLowerCase()}`);
 	}
@@ -21,4 +22,4 @@ const CollectionPreview:React.FC<ShopCollection & RouteComponentProps> = ({title
 	);
 }
 
-export default withRouter(CollectionPreview);
+export default CollectionPreview;

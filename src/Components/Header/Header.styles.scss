@@ -5,15 +5,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-
+  .logo-container {
+    margin-left: 5rem;
+  }
   .side-menu {
     width: 20%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 1rem;
     .auth {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+
       .username {
         font-size: 1.5rem;
         font-weight: bold;
@@ -70,6 +74,7 @@
         display: none;
       }
       .hamburger-menu {
+        margin-left: 10rem;
         display: block;
         cursor: pointer;
       }

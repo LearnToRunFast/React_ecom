@@ -41,16 +41,14 @@ const Header:React.FC = () => {
 			{
 				user 
 					? ( <div className="auth">
-							<div className="option" onClick={signOut}>SIGN OUT</div>
 							<div className="username">{user.displayName}</div>
+							<div className="option" onClick={signOut}>SIGN OUT</div>
 						</div>
 						)
 					: <Link className="option" to="/sign">SIGN IN</Link>
 			}
 			<CartIcon/>
 		</div>
-
-
 		{hidden 
 			? null 
 			: <CartDropdown/>

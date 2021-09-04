@@ -4,12 +4,13 @@ import CustomButton from '../Custom-button/Custom-button.component';
 import CartItem from '../Cart-item/Cart-item.component';
 import {useSelector} from 'react-redux';
 import {getCartItems} from '../../redux/selector';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {toggleCartDropdown} from '../../redux/action';
 import React from 'react';
 
-const CartDropdown:React.FC<RouteComponentProps> = ({history}: RouteComponentProps) => {
+const CartDropdown:React.FC = () => {
+	const history = useHistory();
 	const cartItems = useSelector(getCartItems);
 	const dispatch = useDispatch();
 	const handleOnClick = () => {
@@ -31,4 +32,4 @@ const CartDropdown:React.FC<RouteComponentProps> = ({history}: RouteComponentPro
 		</div>	
 )}
 
-export default withRouter(CartDropdown);
+export default CartDropdown;
